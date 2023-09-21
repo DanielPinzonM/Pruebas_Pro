@@ -1,3 +1,8 @@
+//Puertos de Columnas
+#define SerF 5
+#define RclkF 6
+#define SrclkF 7
+
 //Puertos de Filas
 #define SerF 8
 #define RclkF 9
@@ -38,7 +43,7 @@ void loop(){
     //Se direcciona según el dato ingresado
     switch(Opcion){
         case '1':
-            //ejecutar función correspondiente
+            Verificar();
             break;
         case '2':
             //ejecutar función correspondiente;
