@@ -1,8 +1,3 @@
-//Puertos de Columnas
-#define SerC 5
-#define RclkC 6
-#define SrclkC 7
-
 //Puertos de Filas
 #define SerF 8
 #define RclkF 9
@@ -24,18 +19,23 @@ void setup(){
 
 void loop(){
     char Opcion;
-
+    
+    //Se imprime menú principal
     Serial.println("\n\n\n\n\n\n\n\n\n\n\n");
     Serial.println("Seleccione una de las siguientes opciones: \n");
-    Serial.println("1. Verificar leds");
-    Serial.println("2. Ingresar imagen por teclado");
+    Serial.println("1. Verificar leds (verificación)");
+    Serial.println("2. Ingresar imagen por teclado (imagen)");
     Serial.println("3. Ejecutar patrones predeterminados");
 
+    //Se espera hasta que se envien datos por el monitor serie (Serial.availabe)
     while(Serial.available() == 0){
     
     }
+
+    //Se almacena el dato ingresado
     Opcion = Serial.read();
 
+    //Se direcciona según el dato ingresado
     switch(Opcion){
         case '1':
             //ejecutar función correspondiente
