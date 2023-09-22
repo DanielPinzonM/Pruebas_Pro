@@ -1,8 +1,11 @@
-//Función que enciende y apaga los 64 led con tiempo entre medio
-void Verificar(void){
+void Verificar(void){ 
+
+    /*Función que pide los ajustes para la prueba de verificaion de
+    los leds, los almacena e invoca la ejecucón.*/
 
     short int Ajustes[2] =  {};
-
+    
+    //Se pide y almacena el tiempo entre apagados en Ajustes[0]
     while (true){
         Serial.print("\n\n\n\n\n\n\n\n\n\n\n");
         Serial.print("Ingrese el tiempo entre encendido y apagado:");
@@ -21,6 +24,7 @@ void Verificar(void){
         }
     }
     
+    //Se pide y almacena la cantidad de repeticiones en Ajustes[1]
     while (true){
         Serial.print("\n\n\n\n\n\n\n\n\n\n\n");
         Serial.print("Ingrese el numero de secuencias:");
@@ -38,6 +42,8 @@ void Verificar(void){
             delay(3000);
         }
     }
+
+    //Se notifica el inicio y atributos de la prueba de verificacion
     Serial.print("\n\n\n\n\n\n\n\n\n\n\n");  
     Serial.print("Ejecutando prueba de leds (");
     Serial.print(Ajustes[0]/1000);
@@ -49,17 +55,21 @@ void Verificar(void){
 }
 
 void EjecVerificar (short int *A){
-
+    
     for(short int i = 0; i<(*(A+1)); i++){
-        digitalWrite(RclkF, LOW);
-        shiftOut(SerF, SrclkF, LSBFIRST, 255);
+        
+        //Accion de encender
+        digitalWrite(RclkF, LOW); 
+        shiftOut(SerF, SrclkF, LSBFIRST, 255); //Filas 11111111
         digitalWrite(RclkF, HIGH);
-    
+        
         delay(*A);
-    
+        
+        //Accion de apagar
         digitalWrite(RclkF, LOW);
-        shiftOut(SerF, SrclkF, LSBFIRST, 0);
+        shiftOut(SerF, SrclkF, LSBFIRST, 0); //Filas 00000000
         digitalWrite(RclkF, HIGH);
+        
         delay(1000);
     }
 }
