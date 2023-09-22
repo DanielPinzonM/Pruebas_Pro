@@ -1,17 +1,17 @@
 //Función que enciende y apaga los 64 led con tiempo entre medio
 void Verificar(void){
 
-    short int Tiempo, NumSec;
+    short int Ajustes[2] =  {};
 
     while (true){
         Serial.print("\n\n\n\n\n\n\n\n\n\n\n");
-        Serial.print("Ingrese el tiempo entre cambios de estado:");
+        Serial.print("Ingrese el tiempo entre encendido y apagado:");
         while(Serial.available() == 0){
             
         }
-        Tiempo = Serial.parseInt();
-        Tiempo = Tiempo*1000;
-        if (Tiempo != 0){
+        Ajustes[0] = Serial.parseInt()*1000;
+        
+        if (Ajustes[0] != 0){
             break;
         }
         else{
@@ -27,8 +27,9 @@ void Verificar(void){
         while(Serial.available() == 0){
             
         }
-        NumSec = Serial.parseInt();
-        if (NumSec != 0){
+        Ajustes[1] = Serial.parseInt();
+        
+        if (Ajustes[1] != 0){
             break;
         }
         else{
@@ -39,26 +40,26 @@ void Verificar(void){
     }
     Serial.print("\n\n\n\n\n\n\n\n\n\n\n");  
     Serial.print("Ejecutando prueba de leds (");
-    Serial.print(Tiempo/1000);
-    Serial.print(" segundos entre cambios de estado - ");
-    Serial.print(NumSec);
+    Serial.print(Ajustes[0]/1000);
+    Serial.print(" segundos entre encendido y apagado - ");
+    Serial.print(Ajustes[1]);
     Serial.print(" repeticiones)");
     
-    EjecVerificar(&Tiempo, &NumSec);
+    EjecVerificar(&Ajustes[0]);
 }
 
-void EjecVerificar (short int *T, short int *NS){
+void EjecVerificar (short int *A){
 
-    for(short int i = 0; i<(*NS); i++){
+    for(short int i = 0; i<(*(A+1)); i++){
         digitalWrite(RclkF, LOW);
         shiftOut(SerF, SrclkF, LSBFIRST, 255);
         digitalWrite(RclkF, HIGH);
     
-        delay(*T);
+        delay(*A);
     
         digitalWrite(RclkF, LOW);
         shiftOut(SerF, SrclkF, LSBFIRST, 0);
         digitalWrite(RclkF, HIGH);
-        delay(*T);
+        delay(1000);
     }
 }

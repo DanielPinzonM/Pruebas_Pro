@@ -28,7 +28,7 @@ void loop(){
     //Se imprime menú principal
     Serial.println("\n\n\n\n\n\n\n\n\n\n\n");
     Serial.println("Seleccione una de las siguientes opciones: \n");
-    Serial.println("1. Verificar leds (verificación)");
+    Serial.println("1. Verificar leds (verificacion)");
     Serial.println("2. Ingresar imagen por teclado (imagen)");
     Serial.println("3. Ejecutar patrones predeterminados");
 
