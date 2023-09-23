@@ -1,30 +1,31 @@
 void Patrones(void){
 
-    short unsigned int Patron1[4][2]={{231,129},{195,66},{129,36},{0,24}};
-    short unsigned int Patron2[4][2]={{126,129},{189,66},{219,36},{231,24}};
-    short unsigned int Patron3[2][2]={{36,51},{73,204}};
-    short unsigned int Patron4[4][2]={{240,129},{225,66},{195,36},{135,24}};
+	int **Patron = new int*[4]; //{memory1,memory2,memory3, memory4}
+    Patron[0] = new int[2]{231,129};
+    Patron[1] = new int[2]{195,66};
+    Patron[2] = new int[2]{129,36};
+    Patron[3] = new int[2]{0,24};
 
-    EjecPatron(Patron1[0], (sizeof(Patron1)/sizeof(Patron1[0])));
+    EjecPatron(Patron1, 4);
 
 }
 
 
-void EjecPatron(short unsigned int *Patron, short int Tamano){
+void EjecPatron(int **Patron, short int Tamano){
 
     for (short int i = 0; i<400; i++){
-        for (short int j = 0; j < Tamano*2; j+=2){
+        for (short int j = 0; j < Tamano; j++){
             
             digitalWrite(RclkF, LOW);
             shiftOut(SerF, SrclkF, MSBFIRST, 0);
             digitalWrite(RclkF, HIGH);
             
             digitalWrite(RclkC, LOW);
-            shiftOut(SerC, SrclkC, MSBFIRST, *(Patron+j));//Filas 10000001
+            shiftOut(SerC, SrclkC, MSBFIRST, Patron[j][0]);//Filas 10000001
             digitalWrite(RclkC, HIGH);
             
             digitalWrite(RclkF, LOW);
-            shiftOut(SerF, SrclkF, MSBFIRST, *(Patron+1+j));
+            shiftOut(SerF, SrclkF, MSBFIRST, Patron[j][1]);
             digitalWrite(RclkF, HIGH);
             
             delay(5);
