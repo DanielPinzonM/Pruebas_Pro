@@ -7,7 +7,7 @@ void Imagen(){
     short unsigned int aux = 0;
 
     Serial.print("\n\n\n\n\n\n\n\n\n\n\n");  
-    Serial.print("¿Cuantas filas estaran prendidas en el patron?(1-8):");
+    Serial.print("Cuantas filas estaran prendidas en el patron(1-8):");
 
     while(Serial.available() == 0){
         
@@ -21,7 +21,7 @@ void Imagen(){
         else{
             Serial.print("\n\n\n\n\n\n\n\n\n\n\n");  
             Serial.print("Se ingreso un numero invalido de filas");
-            dealy(3000);
+            delay(3000);
             
             return;
         }
