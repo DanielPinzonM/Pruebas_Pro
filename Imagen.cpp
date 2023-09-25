@@ -1,7 +1,7 @@
 void Imagen(){
 
     unsigned char Entrada;
-    short unsigned int **Patron;
+    short unsigned int **NPatron;
     short unsigned int ValorC = 0;
     bool FilaOn = false;
     short unsigned int aux = 0;
@@ -15,7 +15,7 @@ void Imagen(){
         aux = Serial.parseInt();
 
         if (aux>0 && aux <=8){
-            Patron = new short unsigned int*[aux];
+            NPatron = new short unsigned int*[aux];
             aux=0;
         }
         else{
@@ -45,11 +45,11 @@ void Imagen(){
 
             if (Entrada != '1' && Entrada != '0'){
                 
-                for(short int i=0; i<=aux; i++){
-                    delete [] Patron[i];
+                for(short int i=0; i<aux; i++){
+                    delete [] NPatron[i];
                 }
 
-                delete[] Patron;
+                delete[] NPatron;
 
                 Serial.print("\n\n\n\n\n\n\n\n\n\n\n");
                 Serial.print("(Error) Se ingreso un dato diferente a unos y ceros.");
@@ -60,19 +60,22 @@ void Imagen(){
         }
 
         if(FilaOn == true){
-            Patron[aux] = new short unsigned int[2]{255-ValorC,ownpow(2,i)};
+            NPatron[aux] = new short unsigned int[2]{255-ValorC,ownpow(2,i)};
             aux += 1;
         }
 		
         ValorC = 0;
         FilaOn = false;
     }
-    EjecPatron(Patron, aux, 400);
 
-    for(short int i=0; i<=aux; i++){
-        delete [] Patron[i];
+    Serial.print("\n\n\n\n\n\n\n\n\n\n\n");
+    Serial.print("Ejecutando patron (10 segundos de duracion)");
+    EjecPatron(NPatron, aux, 8000/(aux*5));
+
+    for(short int i=0; i<aux; i++){
+        delete [] NPatron[i];
     }
-    delete[] Patron;
+    delete[] NPatron;
 
 
 }

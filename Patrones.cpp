@@ -53,6 +53,7 @@ void Patrones(){
             for(short int i=0; i<4; i++){
                 delete [] Patron[i];
             }
+            delete [] Patron;
 
             Patron = new short unsigned int*[4]; //Patron2[4][2]={{126,129},{189,66},{219,36},{231,24}};
             Patron[0] = new short unsigned int[2]{126,129};  //
@@ -65,6 +66,7 @@ void Patrones(){
             for(short int i=0; i<4; i++){
                 delete [] Patron[i];
             }
+            delete [] Patron;
 
             Patron = new short unsigned int*[2]; //Patron1[2][2]={{36,51},{73,204}};
             Patron[0] = new short unsigned int[2]{36,51};
@@ -75,6 +77,7 @@ void Patrones(){
             for(short int i=0; i<2; i++){
                 delete [] Patron[i];
             }
+            delete [] Patron;
 
             Patron = new short unsigned int*[4]; //Patron2[4][2]={{240,129},{225,66},{195,36},{135,24}};
             Patron[0] = new short unsigned int[2]{240,129};
@@ -87,6 +90,7 @@ void Patrones(){
             for(short int i=0; i<4; i++){
                 delete [] Patron[i];
             }
+            delete [] Patron;
         }
 }
 
@@ -114,4 +118,8 @@ void EjecPatron(short unsigned int **Patron, short int Tamano, short int tiempo)
     digitalWrite(RclkF, LOW);
     shiftOut(SerF, SrclkF, MSBFIRST, 0);
     digitalWrite(RclkF, HIGH);
+
+    digitalWrite(RclkC, LOW);
+    shiftOut(SerC, SrclkC, MSBFIRST, 0);
+    digitalWrite(RclkC, HIGH);
 }

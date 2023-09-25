@@ -1,7 +1,7 @@
 //Puertos de Columnas
-#define SerF 5
-#define RclkF 6
-#define SrclkF 7
+#define SerC 5
+#define RclkC 6
+#define SrclkC 7
 
 //Puertos de Filas
 #define SerF 8
@@ -23,38 +23,7 @@ void setup(){
 }
 
 void loop(){
-    char Opcion;
     
-    //Se imprime menú principal
-    Serial.println("\n\n\n\n\n\n\n\n\n\n\n");
-    Serial.println("Seleccione una de las siguientes opciones: \n");
-    Serial.println("1. Verificar leds (verificacion)");
-    Serial.println("2. Ingresar imagen por teclado (imagen)");
-    Serial.println("3. Ejecutar patrones predeterminados");
+    Publick();
 
-    //Se espera hasta que se envien datos por el monitor serie (Serial.availabe)
-    while(Serial.available() == 0){
-    
-    }
-
-    //Se almacena el dato ingresado
-    Opcion = Serial.read();
-
-    //Se direcciona según el dato ingresado
-    switch(Opcion){
-        case '1':
-            Verificar();
-            break;
-        case '2':
-            //ejecutar función correspondiente;
-            break;
-        case '3':
-            //ejecutar función correspondiente;
-        default:
-            Serial.print("\n<");
-            Serial.print(Opcion);
-            Serial.print(">");
-            Serial.println(" no es una opcion valida");
-            delay(3000);
-    }
 }
